@@ -1,6 +1,8 @@
 <template>
-  <div class="sub-menu-box">
-    <slot></slot>
+  <div v-if="isopen" class="sub-menu-box">
+    <div class="wrap">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -12,6 +14,10 @@ export default {
       default: function() {
         return {};
       }
+    },
+    isopen: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -20,6 +26,11 @@ export default {
     };
   },
   computed: {},
+  watch: {
+    isopen(newval) {
+      return newval;
+    }
+  },
   methods: {}
 };
 </script>

@@ -89,9 +89,11 @@
                 <b-nav-item v-if="isHomePage" to="/#about-mew">{{
                   $t('header.about')
                 }}</b-nav-item>
-                <b-nav-item v-if="wallet" @click="txHistoryMenuOpen"
+                <b-nav-item
+                  v-if="wallet"
+                  @click="isTxHistoryMenuOpen = !isTxHistoryMenuOpen"
                   >{{ $t('header.txHistory') }}
-                  <sub-menu-box>
+                  <sub-menu-box :isopen="isTxHistoryMenuOpen">
                     <p>Submenu</p>
                   </sub-menu-box>
                 </b-nav-item>
@@ -257,7 +259,8 @@ export default {
       gasPrice: '0',
       error: {},
       resolver: () => {},
-      showGettingStarted: ''
+      showGettingStarted: '',
+      isTxHistoryMenuOpen: false
     };
   },
   computed: {
@@ -354,10 +357,6 @@ export default {
     // this.$eventHub.$off('issueModal');
   },
   methods: {
-    txHistoryMenuOpen() {
-      console.log('-----------------------------');
-      console.log(this.wallet);
-    },
     setHighGasPrice() {
       this.web3.eth
         .getGasPrice()
