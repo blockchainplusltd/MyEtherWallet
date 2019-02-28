@@ -89,14 +89,9 @@
                 <b-nav-item v-if="isHomePage" to="/#about-mew">{{
                   $t('header.about')
                 }}</b-nav-item>
-                <b-nav-item
-                  v-if="wallet"
-                  @click="isTxHistoryMenuOpen = !isTxHistoryMenuOpen"
-                  >{{ $t('header.txHistory') }}
-                  <sub-menu-box :isopen="isTxHistoryMenuOpen">
-                    <p>Submenu</p>
-                  </sub-menu-box>
-                </b-nav-item>
+                <div v-if="wallet">
+                  <sub-menu-box :options="txHistoryMenuOptions"> </sub-menu-box>
+                </div>
                 <b-nav-item to="/#faqs">{{ $t('common.support') }}</b-nav-item>
                 <div class="language-menu-container">
                   <div class="arrows">
@@ -260,7 +255,20 @@ export default {
       error: {},
       resolver: () => {},
       showGettingStarted: '',
-      isTxHistoryMenuOpen: false
+      txHistoryMenuOptions: {
+        //isMenuOpen: false,
+        menuTitle: this.$t('header.txHistory'),
+        subMenus: [
+          {
+            title: 'Etherscan (ETH)',
+            link: 'https://etherscan.io/'
+          },
+          {
+            title: 'Ethplorer (Tokens)',
+            link: 'https://ethplorer.io/'
+          }
+        ]
+      }
     };
   },
   computed: {

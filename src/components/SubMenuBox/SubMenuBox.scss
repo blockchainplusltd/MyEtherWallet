@@ -2,10 +2,40 @@
 
 .sub-menu-box {
   position: relative;
+  user-select: none;
 }
 
 .wrap {
+  position: relative;
+}
+
+.menu-title {
+  cursor: pointer;
+  color: $dark-blue-1;
+  font-size: 14px;
+}
+
+.sub-menu {
   position: absolute;
-  top: 0px;
+  top: 30px;
   left: 0px;
+  border: 1px solid $mew-green;
+  border-radius: 3px;
+  background-color: $white;
+  min-width: 200px;
+  padding: 10px 0;
+
+  ul {
+    li {
+      padding: 5px 15px;
+      &:hover {
+        background-color: $light-grey-16;
+      }
+      a {
+        text-decoration: none;
+        color: $dark-blue-1;
+        font-size: 13px;
+      }
+    }
+  }
 }

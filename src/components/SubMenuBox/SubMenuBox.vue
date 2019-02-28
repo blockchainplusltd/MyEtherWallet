@@ -1,7 +1,16 @@
 <template>
-  <div v-if="isopen" class="sub-menu-box">
+  <div class="sub-menu-box">
     <div class="wrap">
-      <slot></slot>
+      <div class="menu-title" @click="isOpen = !isOpen">
+        {{ options.menuTitle }}
+      </div>
+      <div v-if="isOpen" class="sub-menu">
+        <ul>
+          <li v-for="sub in options.subMenus" :key="sub.key">
+            <a :href="sub.link">{{ sub.title }}</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -14,23 +23,15 @@ export default {
       default: function() {
         return {};
       }
-    },
-    isopen: {
-      type: Boolean,
-      default: false
     }
   },
   data() {
     return {
-      inputValue: this.options.value
+      isOpen: false
     };
   },
   computed: {},
-  watch: {
-    isopen(newval) {
-      return newval;
-    }
-  },
+  watch: {},
   methods: {}
 };
 </script>
