@@ -89,7 +89,13 @@
                 <b-nav-item v-if="isHomePage" to="/#about-mew">{{
                   $t('header.about')
                 }}</b-nav-item>
-                <b-nav-item to="/#faqs">{{ $t('common.faqs') }}</b-nav-item>
+                <b-nav-item v-if="wallet" @click="txHistoryMenuOpen"
+                  >{{ $t('header.txHistory') }}
+                  <sub-menu-box>
+                    <p>Submenu</p>
+                  </sub-menu-box>
+                </b-nav-item>
+                <b-nav-item to="/#faqs">{{ $t('common.support') }}</b-nav-item>
                 <div class="language-menu-container">
                   <div class="arrows">
                     <i class="fa fa-angle-down" aria-hidden="true" />
@@ -195,6 +201,7 @@ import IssueLogModal from '@/components/IssueLogModal';
 import BigNumber from 'bignumber.js';
 import MobileMenu from './components/MobileMenu';
 import DisconnectedModal from '@/components/DisconnectedModal';
+import SubMenuBox from '@/components/SubMenuBox';
 
 const events = {
   issueModal: 'issueModal',
@@ -212,7 +219,8 @@ export default {
     'issue-log-modal': IssueLogModal,
     'user-reminder-button': UserReminderButton,
     'mobile-menu': MobileMenu,
-    'disconnected-modal': DisconnectedModal
+    'disconnected-modal': DisconnectedModal,
+    'sub-menu-box': SubMenuBox
   },
   data() {
     return {
@@ -346,6 +354,10 @@ export default {
     // this.$eventHub.$off('issueModal');
   },
   methods: {
+    txHistoryMenuOpen() {
+      console.log('-----------------------------');
+      console.log(this.wallet);
+    },
     setHighGasPrice() {
       this.web3.eth
         .getGasPrice()

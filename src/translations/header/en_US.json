@@ -23,5 +23,6 @@
   "providerDepositAddress": "Deposit Address",
   "orderID": "{provider} order ID",
   "provider": "Provider",
-  "invalidIBAN": "Invalid IBAN"
+  "invalidIBAN": "Invalid IBAN",
+  "txHistory": "Transaction History"
 }
